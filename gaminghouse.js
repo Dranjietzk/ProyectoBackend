@@ -91,7 +91,6 @@ class ProductManager {
     }
   }
 
-  // Define las rutas y lógica para el carrito aquí
   getCartRouter() {
     const cartRouter = express.Router();
 
@@ -227,7 +226,7 @@ app.delete('/api/products/:pid', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
+  console.log(`Servidor hosteando en http://localhost:${PORT}`);
 });
 
 module.exports = ProductManager;
