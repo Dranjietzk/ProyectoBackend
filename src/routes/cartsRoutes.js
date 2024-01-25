@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 
-const cartsFile = 'carts.json';
+const cartsFile = '../files/carts.json';
 
 function readCartsFile() {
   try {
