@@ -1,12 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const ProductManager = require('../models/productManager');
+const fs = require('fs');
 
 const productManager = new ProductManager('../files/products.json');
+const productsFilePath = 'src/files/products.json';
 
 router.get('/', async (req, res) => {
-  const products = await productManager.getAllProducts();
-  res.json(products);
+  try {
+    // Leer los datos de productos desde el archivo products.json
+    const productsData = fs.readFileSync(productsFilePath, 'utf8');
+    const products = JSON.parse(productsData);
+
+    // Renderizar la vista "home" y pasar los productos como contexto
+    res.render('home', { products });
+  } catch (error) {
+    console.error('Error al leer el archivo products.json:', error);
+    res.status(500).send('Error interno del servidor');
+  }
 });
 
 router.get('/:pid', async (req, res) => {
