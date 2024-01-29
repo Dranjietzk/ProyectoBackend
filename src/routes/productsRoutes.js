@@ -8,11 +8,9 @@ const productsFilePath = 'src/files/products.json';
 
 router.get('/', async (req, res) => {
   try {
-    // Leer los datos de productos desde el archivo products.json
     const productsData = fs.readFileSync(productsFilePath, 'utf8');
     const products = JSON.parse(productsData);
 
-    // Renderizar la vista "home" y pasar los productos como contexto
     res.render('home', { products });
   } catch (error) {
     console.error('Error al leer el archivo products.json:', error);

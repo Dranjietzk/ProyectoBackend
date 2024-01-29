@@ -13,18 +13,16 @@ app.use(bodyParser.json());
 io.on('connection', (socket) => {
   console.log('Cliente conectado');
 
-  // Escuchar eventos del cliente para actualizar productos en tiempo real
   socket.on('newProduct', async () => {
     const products = await productManager.getAllProducts();
-    io.emit('updateProducts', products); // Emitir la lista actualizada de productos
+    io.emit('updateProducts', products); 
   });
 
   socket.on('deleteProduct', async () => {
     const products = await productManager.getAllProducts();
-    io.emit('updateProducts', products); // Emitir la lista actualizada de productos
+    io.emit('updateProducts', products); 
   });
 
-  // Manejar la desconexión del cliente
   socket.on('disconnect', () => {
     console.log('Cliente desconectado');
   });
